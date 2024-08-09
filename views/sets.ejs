@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lego Sets</title>
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+<body tabindex="-1" class="bg-gray-100">
+    <%- include('partials/navbar', { page: '/' }) %>
+
+    <div class="container mx-auto p-6">
+        <div class="hero bg-base-200 py-4 rounded-lg shadow-lg mb-6">
+            <div class="hero-content text-center">
+                <div class="max-w-md">
+                    <h1 class="text-5xl font-bold">Collection</h1>
+                    <p class="py-6">
+                        Browse the entire collection. Click the theme to filter by themes such as:
+                        <a href="/lego/sets?theme=books" class="btn btn-primary btn-xs">Books</a>
+                        <a href="/lego/sets?theme=playhouse" class="btn btn-primary btn-xs">Playhouse</a>
+                        <a href="/lego/sets?theme=service packs" class="btn btn-primary btn-xs">Service Packs</a>
+                        <a href="/lego/sets?theme=technic" class="btn btn-primary btn-xs">Technic</a>
+                        <a href="/lego/sets?theme=classic town" class="btn btn-primary btn-xs">Classic Town</a>
+                        <a href="/lego/sets?theme=supplemental" class="btn btn-primary btn-xs">Supplemental</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="table table-zebra w-full">
+                <thead class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                    <tr>
+                        <th class="px-4 py-2 text-center">Image</th>
+                        <th class="px-4 py-2 text-center">Name</th>
+                        <th class="px-4 py-2 text-center">Theme</th>
+                        <th class="px-4 py-2 text-center">Year</th>
+                        <th class="px-4 py-2 text-center">Number of Parts</th>
+                        <th class="px-4 py-2 text-center">Details</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700 text-sm font-light">
+                    <% sets.forEach(set => { %>
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td>
+                                <div>
+                                    <img class="w-32 h-32 rounded-lg bg-transparent bg-no-repeat bg-cover" src="<%= set.img_url %>" alt="Set Image" />
+                                </div>
+                            </td>
+                            <td class="px-4 py-2 text-center"><%= set.name %></td>
+                            <td class="px-4 py-2 text-center">
+                                <a href="/lego/sets?theme=<%= set.theme %>"><%= set.Theme.name %></a>
+                            </td>                            
+                            <td class="px-4 py-2 text-center"><%= set.year %></td>
+                            <td class="px-4 py-2 text-center"><%= set.num_parts %></td>
+                            <td class="px-4 py-2 text-center">
+                                <a href="/lego/sets/<%= set.set_num %>" class="btn btn-primary btn-xs">View Details</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lego Collection</title>
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+<body tabindex="-1">
+    <%- include('partials/navbar', { page: '/' }) %>
+
+    <div class="container mx-auto">
+        <div class="hero bg-base-200 rounded-lg p-6">
+            <div class="hero-content text-center">
+                <div class="max-w-md">
+                    <h1 class="text-5xl font-bold">Discover the Joy of Lego</h1>
+                    <p class="py-6">Unleash your imagination and creativity as you explore the endless possibilities of Lego building.</p>
+                    <a href="/lego/sets" class="btn btn-primary">Get Started Now</a>
+                </div>
+            </div>
+        </div>
+
+        <br/>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <% sets.slice(0, 3).forEach(set => { %>
+                <div>
+                    <div class="card bg-base-100 shadow-xl">
+                        <figure>
+                            <img class="w-full" src="<%= set.img_url %>" alt="<%= set.name %>" />
+                        </figure>
+                        <div class="card-body">
+                            <h2 class="card-title"><%= set.name %></h2>
+                            <p>This set was released in <%= set.year %> and contains <%= set.num_parts %> parts. <%= set.description %></p>
+                            <div class="card-actions justify-end">
+                                <a href="/lego/sets/<%= set.set_num %>" class="btn btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</body>
+
+</html>
